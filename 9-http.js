@@ -3,9 +3,9 @@ const http = require('http');
 // you can create your own server
 http.createServer( (req, res)=> { // req object , res object
   console.log('Request Received');
-  // console.log(req);
+  console.log(req.url);
 
-  res.write('Welcome to Home Page');
+  res.write('Welcome to Home Page!');
   res.end();
 
 }).listen(3000, ()=>{
