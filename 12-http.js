@@ -57,5 +57,5 @@ http.createServer((req, res) => { // req and response objects are created
 
   res.end();
 }).listen(3000, () => {
-  console.log('The server started. Open https://localhost:3000 on your browser.')
+  console.log('The server started. Open http://localhost:3000 on your browser.')
 }); //listen specifies the port server is running on
