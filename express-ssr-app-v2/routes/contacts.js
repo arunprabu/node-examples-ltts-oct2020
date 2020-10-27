@@ -30,5 +30,4 @@ router.get('/:contactId/:name', function(req, res, next) { // working with URL P
   res.render('contacts-details', { id: req.params.contactId, name: req.params.name});
 });
 
-
 module.exports = router;
