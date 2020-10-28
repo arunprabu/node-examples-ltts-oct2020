@@ -10,7 +10,8 @@ var Contact = new mongoose.Schema({
   createdBy : String,
   createdOn : {type: Date, default: Date.now},
   updatedBy : String,
-  updatedOn : {type: Date, default: Date.now}
+  updatedOn : {type: Date, default: Date.now},
+  status: 0
 });
 
 Contact.plugin(autoIncrement.plugin, { model: 'Contact', field: 'contactId', startAt: 1 });

@@ -31,34 +31,51 @@ exports.getContacts = (callback) => {
 }
 
 // getContactById
-exports.getContactById = (contactId, callback ) => {
+exports.getContactById = (_contactId, callback ) => {
 
-  const contact = {
-    id: contactId,
-    name: 'Arun',
-    phone: 23435,
-    email: 'a@b.com',
-    createdOn: 3252345,
-    updatedOn: 23423434
-  };
+  Contact.findOne( {contactId: _contactId } , ( err, contact ) => {
+    if(!err){
+      console.log(`Contact with Id ${contact.contactId} Loaded Successfully`);
+    }
 
-  callback(null, contact);
-
+    callback(err, contact);
+  });
 }
 
 // updateContact 
-exports.updateContact = (contactId, contactData, callback) => {
-  console.log(contactId);
+exports.updateContact = (_contactId, contactData, callback) => {
+  console.log(_contactId);
   console.log(contactData);
 
-  callback(null, { status: 'Updated Successfully!'});
+  // 1. construct query and exec 
+  Contact.updateOne( { contactId: _contactId }, contactData, (err, status) => {
+
+    let msg = 'Not Updated! Some Error Occured!'; 
+    if(!err){
+      console.log(status);
+      if(status.n = 1 && status.ok == 1){
+        msg = 'Updated Successfully!';
+      }
+    }
+    // 2. get the data and send it back to route
+    callback(err, status);
+  });
 }
 
 // deleteContact 
-exports.deleteContact = ( contactId, callback) => {
-  console.log(contactId);
-
-  callback(null, { status: 'Deleted Successfully!'});
+exports.deleteContact = ( _contactId, callback) => {
+  
+  Contact.deleteOne({ contactId: _contactId }, (err, status ) => {
+    let msg = 'Not Deleted! Some Error Occured!'; 
+    if(!err){
+      console.log(status);
+      if(status.n = 1 && status.ok == 1){
+        msg = 'Deleted Successfully!';
+      }
+    }
+    // 2. get the data and send it back to route
+    callback(err, msg);
+  });
 }
 
 // filter -- find active contacts 
