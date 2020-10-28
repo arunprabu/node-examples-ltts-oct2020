@@ -1,36 +1,33 @@
-
+// 1. connect to model
+const Contact = require('../models/contact');
 // service methods
 
 // createContact
 exports.createContact = (req, callback) => {
   console.log(req.body);
-  let status = {
-    id: 3,
-    name: 'Smith',
-    phone: 23435,
-    email: 'a@b.com',
-    info: 'Created Successfully!'
-  };
-
-  callback( null, status );
+  // 2. construct query
+  let contactDao = new Contact(req.body);
+  // 3. exec query
+  contactDao.save( (err, savedContact ) =>{ // 4. get the status from db 
+    if (!err) {
+      console.log(`Contact registered successfully with contactId:${savedContact.contactId}`);
+    }
+    //  5. Channelise it to the router
+    callback(err, savedContact);
+  });
 }
 
 // getContacts
 exports.getContacts = (callback) => {
-  const myContacts = [
-    {
-      id: 1,
-      name: 'Arun',
-      phone: 23435
-    },
-    {
-      id: 2,
-      name: 'John',
-      phone: 2423
+  
+  // 1. construct and exec query 
+  Contact.find( (err, contactsList) => {
+    if (!err) {
+      console.log(`Contacts Loaded successfully :${contactsList.length}`);
     }
-  ];
-
-  callback(null, myContacts);
+    // 2. get the data from db and send it to the router
+    callback(err, contactsList);
+  });
 }
 
 // getContactById
