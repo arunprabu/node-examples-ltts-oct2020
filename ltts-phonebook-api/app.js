@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -10,6 +11,9 @@ var usersRouter = require('./routes/users');
 // importing API Routes 
 var contactsRouter = require('./routes/api/contacts');
 var authRouter = require('./routes/api/auth');
+
+//connecting passport config
+require('./config/passportConfig');
 
 var app = express();
 
@@ -22,6 +26,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// setting up authentication middleware
+app.use(passport.initialize());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
