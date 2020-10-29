@@ -1,0 +1,47 @@
+WebRTC 
+====
+    WebRTC - Real Time Communication Standard
+    HTML5 Standard for browsers to communicate between them 
+    Browsers can communicate in real time with other browser 
+
+    WebRTC has some building blocks for developers to use to build apps 
+    The apps can do video chat over internet 
+    WebRTC works on supported browser. 
+    And It doesn't require any other additional tools. 
+
+    Along with HTML5, a JavaScript API is introduced for WebRTC 
+    The JS API enables developers to develop WebRTC based webapps 
+    It connects directly to the browser without any storage needed in between. 
+    So, essentially it is a peer to peer connection 
+    (similar to a chrome to another firefox)
+
+    Signalling Server 
+
+    In a nutshell, WebRTC is a free, open project that provides browsers 
+    and mobile applications with Real-Time Communications (RTC) 
+    capabilities via simple API’s.
+
+    We need a front end. So let's build one in pug 
+
+Websockets 
+====
+    Communication between browser and a server 
+    One way is HTTP; another is websocket 
+
+    WebSocket is a computer communications protocol, 
+    which provides full-duplex communication channels over a 
+    single TCP connection.
+
+    WebSocket is a bi-directional communication between 
+    the server and the client which implies that 
+    both parties can communicate and exchange data at the same time.
+
+    Allows real-time data flow b/w both client and server 
+
+    Socket.io -- an implementation of websockets concept in JS (usable in both NodeJS and Front end) 
+    To build this app: 
+    Refer: https://socket.io/docs/ and https://socket.io
+
+    Example app is here https://socket.io/demos/chat/ 
+
+====
