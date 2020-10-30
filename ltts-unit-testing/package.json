@@ -1,5 +1,5 @@
 {
-  "name": "my-unit-testing",
+  "name": "ltts-unit-testing",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -19,7 +19,6 @@
     "chai-http": "^4.3.0",
     "mocha": "^8.2.0",
     "sinon": "^9.2.1",
-    "swagger-jsdoc": "^5.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "supertest": "^6.0.0"
   }
 }

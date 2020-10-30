@@ -3,8 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var fs = require('fs');
-
+const fs = require('fs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,20 +24,21 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use('/movies', (req, res) => {
-  console.log('into movies');
-  fs.readFile('db.json', (err, result) => {
-    if (err) throw err;
-    res.send(JSON.parse(result));
-  })
-})
+  console.log('Inside GET Movies API');
+  fs.readFile('db.json', (err, moviesList) => {
+    if(err) throw err;
+
+    res.send(JSON.parse(moviesList));
+  });
+});
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

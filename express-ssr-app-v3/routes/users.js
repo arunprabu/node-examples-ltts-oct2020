@@ -25,7 +25,7 @@ router.post('/login', function(req, res, next) {
   // and then send it to front end.
 
   res.cookie('session_id', '123456789');
-  res.status(200).json({msg: 'You are logged in'});
+  res.status(201).json({msg: 'You are logged in'});
 });
 
 // cookie validator middleware
