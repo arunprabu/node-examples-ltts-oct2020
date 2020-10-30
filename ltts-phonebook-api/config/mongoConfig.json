@@ -1,4 +1,4 @@
 {
-  "url": "mongodb://localhost/contactsDB",
+  "url": "mongodb://mongo/contactsDB",
   "options": {}
 }

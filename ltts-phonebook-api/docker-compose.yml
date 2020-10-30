@@ -1,0 +1,13 @@
+# docker compose is running multi container app as single service
+version: "2"
+services:
+  web:
+    build: .    #this will run the Dockerfile in the current directory (equal to docker build and run)
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo     #mongo office docker image from docker hub
+  mongo:
+    image: mongo  
+    ports:
+      - "27017:27017"
