@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,6 +16,21 @@ var authRouter = require('./routes/api/auth');
 
 //connecting passport config
 require('./config/passportConfig');
+
+// configure swagger in app.js 
+// Extended: https://swagger.io/specification/#infoObject
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      version: '1.0.0',
+      title: 'Phone Book API',
+      description: 'Phone Book API Documentation'
+    },
+    servers: ['http://localhost:3000']
+  },
+  apis: ['./routes/*/*.js', './routes/*.js']
+}
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 var app = express();
 
@@ -31,6 +48,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 app.use('/users', usersRouter);
 
 // API Endpoints 

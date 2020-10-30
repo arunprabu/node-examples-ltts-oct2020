@@ -1,0 +1,71 @@
+1. 
+  npm i swagger-jsdoc swagger-ui-express
+
+2.
+in app.js 
+  const swaggerJsDoc = require("swagger-jsdoc");
+  const swaggerUi = require("swagger-ui-express");
+
+3. configure swagger in app.js 
+
+// Extended: https://swagger.io/specification/#infoObject
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      version: "1.0.0",
+      title: "Accounts API",
+      description: "Accounts API Information",
+      contact: {
+        name: "Arun VJ"
+      },
+      servers: ["http://localhost:3000"]
+    }
+  },
+  // ['.routes/*.js']
+  apis: ["app.js"]
+};
+
+
+4. Where can we access swagger documentation? 
+Setup api end point for API documentation 
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+5. Start the documentation 
+
+// Routes
+/**
+ * @swagger
+ * /accounts:
+ *  get:
+ *    description: Use to request all accounts
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
+app.get("/accounts", (req, res) => {
+  res.status(200).send("account results");
+});
+
+/**
+ * @swagger
+ * /accounts:
+ *    put:
+ *      description: Use to return all accounts
+ *    parameters:
+ *      - name: account
+ *        in: query
+ *        description: Name of our customer
+ *        required: false
+ *        schema:
+ *          type: string
+ *          format: string
+ *    responses:
+ *      '201':
+ *        description: Successfully created account
+ */
+app.put("/accounts", (req, res) => {
+  res.status(200).send("Successfully updated accounts");
+});
+
+

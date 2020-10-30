@@ -5,6 +5,15 @@ const router = express.Router();
 const contactService = require('../../services/contactService');
 
 /* POST contacts */
+/**
+ * @swagger
+ * /api/contacts:
+ *    post:
+ *      description: Create a new Contact
+ *    responses:
+ *      '201':
+ *        description: Successfully created Contact
+ */
 router.post('/', (req, res, next) => { // dealing with req body 
   console.log(req.body);
 
@@ -19,6 +28,15 @@ router.post('/', (req, res, next) => { // dealing with req body
 });
 
 /* GET contacts listing. */
+/**
+ * @swagger
+ * /api/contacts:
+ *  get:
+ *    description: Use to get all contacts
+ *    responses:
+ *      '200':
+ *        description: A successful response!
+ */
 router.get('/', (req, res, next) => {
   
   contactService.getContacts( (err, data)=>{
