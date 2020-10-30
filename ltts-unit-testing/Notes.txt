@@ -26,3 +26,4 @@ pre-programmed expectations.
 Supertest
 ---
 Supertest is an alternative to chai-http 
+https://www.npmjs.com/package/supertest
