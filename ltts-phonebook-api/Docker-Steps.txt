@@ -1,4 +1,7 @@
 Create dockerfile and then
+
+
+create docker-compose.yml
 runthe following cmd 
 
 docker build -t phonebook-api-docker:latest .
@@ -10,36 +13,42 @@ docker run -d -p 3000:3000 phonebook-api-docker
 Check the running containers by the following command 
 docker ps -a
 
-// Essential docker commands 
-Docker Commands
----
 
-docker build -t phonebook-api-docker:latest .
+// Essential docker commands 
+Other Docker Commands
+---
 docker images  (to see docker images )
 docker run -d -p 3000:3000 phonebook-api-docker     (-d (detached) will make it run in background)
-docker run -d -p 27018:27017 mongo   (pulling the official mongo image from docker hub and then run )
 docker ps     (to see running docker containers )
 docker ps -a    (to see all docker containers )
-
-
-
-docker exec -it <container_id> bin/sh 
-docker exec -it 98d6879ed5e1 bin/sh       (bin/sh in windows)
-docker exec -it 98d6879ed5e1 bash         (bash)
 
 to stop the container
 ---
 docker stop <container_id>
 
-
-check the os in the container 
------
-cat /etc/os-release
-
-
-docker push arunvijayarengan/phonebook-ng8-docker:tagname
+to remove/delete all docker containers 
+--
+docker containers prune 
 
 
-docker tag phonebook-ng8-docker:latest arunvijayarengan/phonebook-ng8-docker:latest
-docker push arunvijayarengan/phonebook-ng8-docker:latest
+to remove docker images 
+---
+docker rmi <image_id>
+
+
+To push this container into docker hub 
+----------------------
+docker tag phonebook-api-docker:latest arunvijayarengan/phonebook-api-docker:latest
+docker push arunvijayarengan/phonebook-api-docker:latest
+
+===
+to pull the above docker image 
+--
+docker pull arunvijayarengan/phonebook-api-docker:latest
+
+to run the above image as container 
+----
+docker run -d -p 3000:3000 arunvijayarengan/phonebook-api-docker:latest
+
+=====
 
